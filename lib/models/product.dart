@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class Product {
   final String id;
-  final String name;
+  final String title;
   final String description;
   final double price;
   final String imageUrl;
@@ -10,7 +10,7 @@ class Product {
   Product({
     @required this.id,
     @required this.description,
-    @required this.name,
+    @required this.title,
     @required this.price,
     @required this.imageUrl,
     this.isFavorite = false,
