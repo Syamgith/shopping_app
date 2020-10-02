@@ -77,7 +77,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
   }
 
-  void _saveForm() {
+  void _saveForm() async {
     final isValid = _form.currentState.validate();
     if (!isValid) {
       return;
@@ -87,18 +87,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
       _isLoading = true;
     });
     if (_editedProduct.id != null) {
-      Provider.of<Products>(context, listen: false).updateProduct(
+      await Provider.of<Products>(context, listen: false).updateProduct(
         _editedProduct.id,
         _editedProduct,
       );
-      setState(() {
-        _isLoading = false;
-      });
     } else {
-      Provider.of<Products>(context, listen: false)
-          .addProduct(_editedProduct)
-          .catchError((err) {
-        return showDialog<Null>(
+      try {
+        await Provider.of<Products>(context, listen: false)
+            .addProduct(_editedProduct);
+      } catch (err) {
+        await showDialog<Null>(
           context: context,
           builder: (ctx) => AlertDialog(
             title: Text('Error'),
@@ -113,13 +111,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
             ],
           ),
         );
-      }).then((_) {
-        setState(() {
-          _isLoading = false;
-        });
-        Navigator.of(context).pop();
-      });
+      }
+      // finally {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      // }
     }
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override
