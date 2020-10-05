@@ -22,8 +22,8 @@ class ProductDetailScreen extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 loadedProduct.title,
-                textAlign: TextAlign.center,
               ),
+              centerTitle: true,
               background: Hero(
                 tag: loadedProduct.id,
                 child: Image.network(
