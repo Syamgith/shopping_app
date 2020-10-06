@@ -52,7 +52,7 @@ class Products with ChangeNotifier {
     return _items.where((element) => element.isFavorite).toList();
   }
 
-  Future<Void> fetchAndSetProducts([bool filterByUser = false]) async {
+  Future<Void> fetchAndSetProducts({bool filterByUser = false}) async {
     final filterString =
         filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
     var url =
@@ -60,6 +60,7 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
       final extratedData = json.decode(response.body) as Map<String, dynamic>;
+      print(extratedData);
       if (extratedData == null) {
         return null;
       }
@@ -99,7 +100,7 @@ class Products with ChangeNotifier {
               'description': product.description,
               'imageUrl': product.imageUrl,
               'price': product.price,
-              'createrId': userId,
+              'creatorId': userId,
             },
           ));
       final newProduct = Product(

@@ -39,7 +39,6 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(UserProductScreen.routeName);
-              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           Divider(),
@@ -47,8 +46,8 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
             onTap: () {
-              Navigator.of(context).pop();
               Provider.of<Auth>(context, listen: false).logout();
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
         ],
