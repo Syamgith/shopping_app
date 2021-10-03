@@ -5,7 +5,7 @@ A complete shopping app using flutter for both iOs and android. <br>
 ### Authentication and singup/login using email <br>
 ### Delightful animations. <br>
 ### Datas are stored in firebase realtime database. <br>
-### Proviser package for state management. <br>
+### Provider package for state management. <br>
 ****
 Check out [APK File](app-release.apk)
 ****
